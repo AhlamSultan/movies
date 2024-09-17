@@ -1,5 +1,5 @@
 name: movies
-description: Where You Find Your Favorite Movies
+description: Flutter app to find movies
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -32,6 +32,8 @@ dependencies:
     sdk: flutter
   google_fonts: ^5.1.0
   http: ^1.1.0
+  carousel_slider: ^5.0.0
+  #firebase_core: ^2.24.2
 
 
   # The following adds the Cupertino Icons font to your application.

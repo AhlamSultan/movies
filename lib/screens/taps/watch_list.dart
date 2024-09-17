@@ -3,9 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/app_design/app_colors.dart';
 import 'package:movies/screens/taps/home_/poster.dart';
 
-class WatchList extends StatelessWidget {
+class WatchList extends StatefulWidget {
   const WatchList({super.key});
 
+  @override
+  State<WatchList> createState() => _WatchListState();
+}
+
+class _WatchListState extends State<WatchList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +43,8 @@ class WatchList extends StatelessWidget {
                             bookMarkColor: AppColors.accent,
                             posterIcon: Icons.check,
                             marginBottom: 10,
+                            width: 140,
+                            height: 90,
                           ),
                           const SizedBox(width: 10,),
                           Column(

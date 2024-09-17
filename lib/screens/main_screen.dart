@@ -16,7 +16,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int selectedTap = 0;
-  List <Widget> taps = [const Home() , const Search() , const Browse() , const WatchList()];
+  List <Widget> taps = [ const Home() , const Search() , const Browse() , const WatchList()];
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,9 @@ class Poster extends StatelessWidget {
   double marginBottom = 0;
   Color bookMarkColor ;
   IconData posterIcon ;
-  Poster({super.key, required this.image , required this.marginRight , required this.bookMarkColor , required this.posterIcon , required this.marginBottom});
+  double width = 0 ;
+  double height = 0 ;
+  Poster({super.key, required this.image , required this.marginRight , required this.bookMarkColor , required this.posterIcon , required this.marginBottom , required this.width , required this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +17,7 @@ class Poster extends StatelessWidget {
       margin: EdgeInsets.only(right: marginRight , bottom: marginBottom),
       child: Stack(
         children: [
-           Image(image: AssetImage(image)),
+           Image.network(image , height: height, width: width,),
           Icon(
             Icons.bookmark,
             color: bookMarkColor.withOpacity(0.7),
@@ -26,7 +28,7 @@ class Poster extends StatelessWidget {
               icon:  Padding(
                 padding: const EdgeInsets.only(right: 13 ,bottom: 14),
                 child: Icon(
-                   posterIcon,
+                  posterIcon,
                   color: Colors.white,
                   size: 18,
                 ),
