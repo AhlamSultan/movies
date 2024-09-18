@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies/app_design/app_colors.dart';
-import 'package:movies/screens/taps/home_/poster.dart';
 
 class WatchList extends StatefulWidget {
   const WatchList({super.key});
@@ -37,24 +36,42 @@ class _WatchListState extends State<WatchList> {
                     children: [
                       Row(
                         children: [
-                          Poster(
-                            image: "assets/images/aline.png",
-                            marginRight: 0,
-                            bookMarkColor: AppColors.accent,
-                            posterIcon: Icons.check,
-                            marginBottom: 10,
-                            width: 140,
-                            height: 90,
+                          Container(
+                            margin: const EdgeInsets.only( bottom: 10),
+                            child: Stack(
+                              children: [
+                                Image.asset("assets/images/aline.png",),
+                                Icon(
+                                  Icons.bookmark,
+                                  color: AppColors.accent.withOpacity(0.7),
+                                  size: 35,
+                                ),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon:  const Padding(
+                                      padding: EdgeInsets.only(right: 13 ,bottom: 14),
+                                      child: Icon(
+                                        Icons.check,
+                                        color: Colors.white,
+                                        size: 18,
+                                      ),
+                                    ))
+                              ],
+                            ),
                           ),
-                          const SizedBox(width: 10,),
+                          const SizedBox(width: 8,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Alita Battle Angel" , style: GoogleFonts.inter(fontWeight: FontWeight.w400 , fontSize: 15 , color: AppColors.primaryText),),
+                              Text("Alita Battle Angel" ,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.inter(fontWeight: FontWeight.w400 , fontSize: 13 , color: AppColors.primaryText),),
                               const SizedBox(height: 10,),
-                              Text("2019" , style: GoogleFonts.inter(fontWeight: FontWeight.w400 , fontSize: 13 , color: AppColors.secondaryText),),
+                              Text("2019" , style: GoogleFonts.inter(fontWeight: FontWeight.w400 , fontSize: 11 , color: AppColors.secondaryText),),
                               const SizedBox(height: 7,),
-                              Text("Rosa Salazar, Christoph Waltz" , style: GoogleFonts.inter(fontWeight: FontWeight.w400 , fontSize: 13 , color: AppColors.secondaryText),),
+                              Text("Rosa Salazar, Christoph Waltz" ,
+                                overflow: TextOverflow.ellipsis,
+                                style: GoogleFonts.inter(fontWeight: FontWeight.w400 , fontSize: 11 , color: AppColors.secondaryText),),
                             ],
                           ),
                         ],

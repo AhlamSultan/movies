@@ -21,8 +21,7 @@ class _MovieDetailsState extends State<MovieDetails> {
 
   @override
   Widget build(BuildContext context) {
-    final movieId = ModalRoute.of(context)!.settings.arguments as int;
-
+    //final movieId = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(29, 30, 29, 1),
@@ -40,7 +39,7 @@ class _MovieDetailsState extends State<MovieDetails> {
           Expanded(
             flex: 2,
             child: FutureBuilder <Details> (
-                future: ApiManager.getDetails(movieId),
+                future: ApiManager.getDetails(1),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return findError();
@@ -60,11 +59,11 @@ class _MovieDetailsState extends State<MovieDetails> {
           Expanded(
             flex: 1,
             child: FutureBuilder<Similar>(
-                future: ApiManager.getSimilar(movieId),
+                future: ApiManager.getSimilar(1),
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return findError();
-                  } else if (snapshot.hasData) {
+                  } else if (!snapshot.hasData) {
                     return buildSimilarMovies(snapshot.data as Similar);
                   } else {
                     return const Center(
@@ -106,7 +105,83 @@ class _MovieDetailsState extends State<MovieDetails> {
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        return Container();
+                        return Expanded(
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context , index){
+                                return Container(
+                                  margin: const EdgeInsets.only(right: 10),
+                                  width: 100,
+                                  height: 184,
+                                  decoration: BoxDecoration(
+                                    color: const Color.fromRGBO(52, 53, 52, 1),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Poster(image: "https://image.tmdb.org/t/p/w500/${results.results?[index].posterPath}",
+                                        marginRight: 0,
+                                        bookMarkColor: AppColors.secondary,
+                                        posterIcon: Icons.add,
+                                        marginBottom: 0,
+                                        width: 100,
+                                        height: 130,
+                                      ),
+                                      const SizedBox(
+                                        height: 8,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 5),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(right: 400),
+                                              child: Row(
+                                                children: [
+                                                  Image.network(
+                                                    "assets/images/star-2.png",
+                                                    width: 10,
+                                                    height: 9,
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Text(
+                                                    "${results.results?[index].voteCount}",
+                                                    overflow: TextOverflow.ellipsis,
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 10,
+                                                        fontWeight: FontWeight.w400,
+                                                        color: AppColors.primaryText),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            const SizedBox(height: 7,),
+                                            Text("${results.results?[index].originalTitle}",
+                                                overflow: TextOverflow.ellipsis,
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: AppColors.primaryText,
+                                                )),
+                                            const SizedBox(height: 7,),
+                                            Text("${results.results?[index].releaseDate}",
+                                              overflow: TextOverflow.ellipsis ,
+                                              style: GoogleFonts.inter(fontWeight: FontWeight.w400 ,
+                                                  fontSize: 8 ,
+                                                  color:AppColors.secondaryText),),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                          ),
+
+                        );
                       }),
                 ),
               ],
